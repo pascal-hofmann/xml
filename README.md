@@ -12,46 +12,122 @@ Use composer to install
 composer install
 ```
 
-
-
 Example
 =======
 
-```php
-use AntiMattr\Xml\XmlBuilder;
+There are a lot of examples in the tests directory, here are the basics
 
-$builder = new XmlBuilder();
-$simpleXmlElement = $builder
-    ->setRoot('api-response')
-    ->setVersion('1.0')
-    ->setEncoding('UTF-8')
-    ->setNamespace('http://seller.marketplace.sears.com/inventory/v1')
-    ->setSchemaLocation('http://seller.marketplace.sears.com/inventory/v1 dss-inventory.xsd')
+Note: Ordinary Arrays are supported. To handle scenarios such as "attributes" and "indexed vs associative arrays", notice the existince of array keys
+
+```text
+'_name'
+'_attributes'
+'_values'
+```
+
+##### One Node
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <product/>
+</root>
+```
+
+```php
+$root = $this->builder
+    ->setRoot('root')
     ->create();
 
 $data = array(
-	array(
-		'_attributes' => array('foo' => 'bar') // _attributes are a constant targeting inline attributes
-		'example' => 'value', // Primitive key / value pairs supported
-		array( 
-			'foo1', // Indexed arrays supported
-			'foo2'
-			'foo3'
-		)
-	),
-    array(
-		'_attributes' => array('foo' => 'bar')
-		'example' => 'value2',
-		array( // 
-			'stringKey1' => 'foo1', // Hash based arrays supported
-		    'stringKey2' => 'foo2'
-			'stringKey3' => 'foo3'
-		)
-	)
+    'product' => array()
 );
+$this->builder->add($root, $data);
 
-$childXmlElement = $builder->addChild($simpleXmlElement, 'item-example', $data);
+$xml = $root->asXML();
 ```
+
+##### Multiple Nodes
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <product/>
+  <foo/>
+  <bar/>
+</root>
+```
+
+```php
+$root = $this->builder
+    ->setRoot('root')
+    ->create();
+
+$data = array(
+    'product' => array(),
+    'foo' => array(),
+    'bar' => array()
+);
+$this->builder->add($root, $data);
+
+$xml = $root->asXML();
+```
+
+##### Multiple Repeating Nodes
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <product/>
+  <product/>
+  <product/>
+</root>
+```
+
+```php
+$root = $this->builder
+    ->setRoot('root')
+    ->create();
+
+$data = array(
+    0 => array('_name' => 'product'),
+    1 => array('_name' => 'product'),
+    2 => array('_name' => 'product')
+);
+$this->builder->add($root, $data);
+
+$xml = $root->asXML();
+```
+
+##### Child Nodes and Attributes
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <product>
+  	<item foo5="bar5" example5="test5"/>
+  </product>
+</root>
+```
+
+```php
+$root = $this->builder
+    ->setRoot('root')
+    ->create();
+
+$data = array(
+    'product' => array(
+        '_values' => array(
+            'item' => array(
+                '_attributes' => array('foo5' => 'bar5', 'example5' => 'test5')
+            ),
+        )
+    )
+);
+$this->builder->add($root, $data);
+$xml = $root->asXML();
+```
+
 
 Pull Requests
 =============

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <product>
+  	<item foo10="bar10" example10="test10"/>
+  	<item foo11="bar11" example11="test11"/>
+  </product>
+</root>

@@ -6,11 +6,23 @@ The AntiMattr XML library that provides XML building support for SimpleXMLElemen
 Installation
 ============
 
-Use composer to install
+Add the following to your composer.json file:
+
+```json
+{
+    "require": {
+        "antimattr/xml": "dev-master"
+    }
+}
+```
+
+Install the libraries by running:
 
 ```bash
 composer install
 ```
+
+If everything worked, the XML Library can now be found at vendor/antimattr/xml.
 
 Example
 =======

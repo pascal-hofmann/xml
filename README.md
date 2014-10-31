@@ -128,14 +128,13 @@ $this->builder->add($root, $data);
 $xml = $root->asXML();
 ```
 
-
 Pull Requests
 =============
 
 Pull Requests - PSR Standards
 -----------------------------
 
-Please use the pre-commit hook to run the fix all code to PSR standards
+Please use the pre-commit hook to fix all code to PSR standards
 
 Install once with
 
@@ -161,3 +160,4 @@ Don't have the pre-commit hook running, please make sure to run the fixer/sniffe
 ```bash
 $ vendor/bin/php-cs-fixer fix src/
 $ vendor/bin/php-cs-fixer fix tests/
+```

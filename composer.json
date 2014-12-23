@@ -14,7 +14,7 @@
     "require-dev": {
         "antimattr/test-case": "~1.0@stable",
         "phpunit/phpunit": "~4.0",
-        "fabpot/php-cs-fixer": "0.4.*@dev"        
+        "fabpot/php-cs-fixer": "dev-master"
     },
     "autoload": {
         "psr-0": { 
@@ -25,11 +25,6 @@
         "psr-0": { 
             "AntiMattr\\TestCase\\": "vendor/antimattr/test-case/src",
             "AntiMattr\\Tests\\Xml\\": "tests/"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
         }
     },
     "archive": {

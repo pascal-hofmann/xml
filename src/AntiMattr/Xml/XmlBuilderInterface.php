@@ -21,35 +21,35 @@ interface XmlBuilderInterface
     /**
      * @param string $encoding
      *
-     * @return AntiMattr\Xml\XmlBuilderInterface
+     * @return \AntiMattr\Xml\XmlBuilderInterface
      */
     public function setEncoding($encoding);
 
     /**
      * @param string $namespace
      *
-     * @return AntiMattr\Xml\XmlBuilderInterface
+     * @return \AntiMattr\Xml\XmlBuilderInterface
      */
     public function setNamespace($namespace);
 
     /**
      * @param string $root
      *
-     * @return AntiMattr\Xml\XmlBuilderInterface
+     * @return \AntiMattr\Xml\XmlBuilderInterface
      */
     public function setRoot($root);
 
     /**
      * @param string $schemaLocation
      *
-     * @return AntiMattr\Xml\XmlBuilderInterface
+     * @return \AntiMattr\Xml\XmlBuilderInterface
      */
     public function setSchemaLocation($schemaLocation);
 
     /**
      * @param string $version
      *
-     * @return AntiMattr\Xml\XmlBuilderInterface
+     * @return \AntiMattr\Xml\XmlBuilderInterface
      */
     public function setVersion($version);
 
@@ -62,7 +62,7 @@ interface XmlBuilderInterface
      * @param SimpleXMLElement $parent
      * @param array            $data
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     public function add(SimpleXMLElement $parent, array $data);
 }
